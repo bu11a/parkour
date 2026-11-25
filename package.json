@@ -1,0 +1,13 @@
+{
+  "name": "parkour-master-2d",
+  "version": "1.0.0",
+  "description": "2D-паркур в браузере с сервером: регистрация, вход, ник, рекорды и таблица лидеров",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
