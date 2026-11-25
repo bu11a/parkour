@@ -1,0 +1,43 @@
+/*
+VOICE: азартная аркада на закате, коротко и по делу
+IDEA: соревнование по паркуру над вечерним городом
+PICTURE: сама игра — крыши, рекламные щиты, бегун в оранжевом худи
+COLOUR and TYPE: фиолетовые сумерки, оранжевое небо, жёлтый акцент; Russo One + Rubik
+LAYOUT: скромный заголовок, игровое окно, под ним управление
+*/
+:root{color-scheme:dark;--bg:#170e26;--ink:#f6ecff;--mute:#b9a6d1;--acc:#ffb02e;--hot:#ff5d73;--panel:rgba(23,14,38,.88)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Rubik,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(16px,3vw,32px) max(4vw,12px);max-width:1240px;margin:0 auto}
+h1{font:400 clamp(26px,4vw,40px)/1.05 "Russo One",Rubik,sans-serif;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 16px}
+.game{position:relative;width:100%;aspect-ratio:16/9;max-height:78vh;min-height:300px;border-radius:14px;overflow:hidden;background:#2b1a4a;box-shadow:0 20px 60px rgba(0,0,0,.45);touch-action:none;user-select:none;-webkit-user-select:none}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hud{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:10px;flex-wrap:wrap;pointer-events:none;font-weight:600}
+.hud span{background:rgba(23,14,38,.6);padding:4px 10px;border-radius:8px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hud .t{font:400 20px "Russo One",sans-serif;color:var(--acc)}
+.ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(15,8,26,.45);padding:12px}
+[hidden]{display:none!important}
+.card{background:var(--panel);border-radius:16px;padding:clamp(16px,3vw,28px);max-width:520px;width:100%;text-align:center;max-height:100%;overflow:auto}
+.card h2{font:400 clamp(24px,3.5vw,36px)/1.05 "Russo One",sans-serif;margin:0 0 8px;color:var(--acc)}
+.card p{margin:0 0 14px;color:var(--mute)}
+.lvls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+button{font:600 16px Rubik,sans-serif;min-height:44px;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;background:#3a2756;color:var(--ink)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.main{background:var(--acc);color:#2a1300}
+button.main small{color:#5a3300}
+button:disabled{opacity:.35;cursor:not-allowed}
+.lvls button{display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.lvls small{font-weight:400;color:var(--mute);font-size:13px}
+.row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.big{font:400 clamp(34px,6vw,52px)/1 "Russo One",sans-serif;color:var(--ink);margin:6px 0}
+.rec{color:var(--hot);font-weight:600}
+.touch{position:absolute;bottom:10px;left:10px;right:10px;display:none;justify-content:space-between;pointer-events:none}
+.touch div{display:flex;gap:10px}
+.touch button{pointer-events:auto;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.14);font-size:24px;backdrop-filter:blur(3px)}
+@media (pointer:coarse){.touch{display:flex}}
+.help{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 28px;margin-top:20px}
+.help h3{font:400 18px "Russo One",sans-serif;margin:0 0 6px;color:var(--acc)}
+.help ul{margin:0;padding-left:18px;color:var(--mute)}
+kbd{font:600 13px Rubik,sans-serif;background:#2e1f47;border-radius:5px;padding:1px 6px;color:var(--ink);white-space:nowrap}
+@media(max-width:600px){.game{aspect-ratio:4/3}.lvls{grid-template-columns:repeat(2,minmax(0,1fr))}}

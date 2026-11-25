@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мастер паркура 2D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="band">
+  <h1>Мастер паркура 2D</h1>
+  <p class="sub">Беги по крышам, перепрыгивай пропасти, ныряй под щиты. Побей свой лучший результат на каждой трассе.</p>
+  <div class="game" id="game">
+    <canvas id="c"></canvas>
+    <div class="hud" id="hud" hidden>
+      <span id="lv">Трасса 1</span><span class="t" id="tm">0.00</span><span id="dt">Падений: 0</span><span id="bs">Рекорд: —</span>
+    </div>
+    <div class="touch" id="touch">
+      <div><button data-k="l" aria-label="Влево">◀</button><button data-k="r" aria-label="Вправо">▶</button></div>
+      <div><button data-k="d" aria-label="Подкат">▼</button><button data-k="j" aria-label="Прыжок">▲</button></div>
+    </div>
+    <div class="ov" id="menu">
+      <div class="card">
+        <h2>Мастер паркура</h2>
+        <p>Выбери трассу. Следующая откроется, когда пройдёшь эту.</p>
+        <div class="lvls" id="lvls"></div>
+      </div>
+    </div>
+    <div class="ov" id="pause" hidden>
+      <div class="card"><h2>Пауза</h2>
+        <div class="row"><button class="main" id="resume">Продолжить</button><button id="restart">Заново</button><button id="tomenu">Меню</button></div>
+      </div>
+    </div>
+    <div class="ov" id="done" hidden>
+      <div class="card"><h2 id="dTitle">Финиш!</h2>
+        <div class="big" id="dTime">0.00</div>
+        <p id="dInfo"></p>
+        <div class="row"><button class="main" id="next">Следующая</button><button id="again">Ещё раз</button><button id="menu2">Меню</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="help">
+    <div><h3>Управление</h3><ul>
+      <li><kbd>A</kbd> <kbd>D</kbd> или <kbd>←</kbd> <kbd>→</kbd> — бег</li>
+      <li><kbd>Пробел</kbd>, <kbd>W</kbd> или <kbd>↑</kbd> — прыжок, в воздухе ещё раз — сальто</li>
+      <li><kbd>S</kbd>, <kbd>C</kbd> или <kbd>↓</kbd> — подкат</li>
+      <li><kbd>R</kbd> — заново, <kbd>P</kbd> или <kbd>Esc</kbd> — пауза</li>
+    </ul></div>
+    <div><h3>Приёмы</h3><ul>
+      <li>Низкие кондиционеры бегун перемахивает сам, если бежит быстро</li>
+      <li>Под красными щитами проходи только подкатом</li>
+      <li>Сальто — второй прыжок, спасает на длинных пропастях и высоких крышах</li>
+      <li>Чем дольше держишь прыжок, тем выше взлёт</li>
+    </ul></div>
+    <div><h3>Трассы</h3><ul>
+      <li>6 трасс, сложность растёт: шире пропасти, больше щитов</li>
+      <li>Жёлтые флажки — чекпоинты, после падения начнёшь с них</li>
+      <li>Время идёт с первого движения, рекорды сохраняются в браузере</li>
+    </ul></div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
