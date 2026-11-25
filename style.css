@@ -41,6 +41,7 @@ button:disabled{opacity:.35;cursor:not-allowed}
 .help ul{margin:0;padding-left:18px;color:var(--mute)}
 kbd{font:600 13px Rubik,sans-serif;background:#2e1f47;border-radius:5px;padding:1px 6px;color:var(--ink);white-space:nowrap}
 @media(max-width:600px){.game{aspect-ratio:4/3}.lvls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+<<<<<<< HEAD
 
 /* вход, регистрация, лидеры */
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#2a1b3f;border-radius:12px;padding:4px;margin:8px 0 14px}
@@ -67,3 +68,5 @@ button.link{background:none;color:var(--mute);text-decoration:underline;margin-t
 .board .t{font-variant-numeric:tabular-nums;white-space:nowrap}
 .board li.msg::before{content:none}
 .mine{font-size:14px;margin:0 0 12px!important}
+=======
+>>>>>>> 3f8ac81d78f1dd0347c2bb6d271f27415dd9819e

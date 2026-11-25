@@ -4,6 +4,7 @@ const H=540;let W=960,S=1,dpr=1;
 const G=2300,JV=780,JV2=690,RUN=420,ACC=2600,AIR=1600,FR=2600,NLV=6;
 const clamp=(v,a,b)=>v<a?a:v>b?b:v;
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+<<<<<<< HEAD
 let save={best:{},open:1},user=null,online=false;
 function loadLocal(){save={best:{},open:1};try{const s=JSON.parse(localStorage.getItem('pk2d')||'null');if(s&&s.best)save=s}catch(e){}}
 function store(){if(!user)try{localStorage.setItem('pk2d',JSON.stringify(save))}catch(e){}}
@@ -14,6 +15,11 @@ async function api(p,body){
   if(!r.ok)throw new Error(j.error||'Ошибка сервера ('+r.status+')');return j}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const NICK_RE=/^[A-Za-z0-9_\-А-Яа-яЁё]{3,16}$/u;
+=======
+let save={best:{},open:1};
+try{const s=JSON.parse(localStorage.getItem('pk2d')||'null');if(s&&s.best)save=s}catch(e){}
+function store(){try{localStorage.setItem('pk2d',JSON.stringify(save))}catch(e){}}
+>>>>>>> 3f8ac81d78f1dd0347c2bb6d271f27415dd9819e
 const fmt=t=>t==null?'—':t.toFixed(2);
 
 function gen(n){
@@ -105,6 +111,7 @@ function finish(){
   $('dTime').textContent=fmt(time);
   $('dInfo').innerHTML=(rec?'<span class="rec">Новый рекорд!</span> ':'Рекорд: '+fmt(b)+' с. ')+'Падений: '+deaths;
   $('next').disabled=lvn>=NLV;show('done');
+<<<<<<< HEAD
   $('board').innerHTML='';$('mine').textContent='';$('boardH').hidden=!online;
   if(user){const n=lvn,t=+time.toFixed(2);$('board').innerHTML='<li class="msg">Сохраняю результат…</li>';
     api('/api/score',{level:n,time:t}).then(r=>{save.best=r.best;save.open=r.open;buildMenu(false);return board(n)})
@@ -116,6 +123,8 @@ async function board(n){
     $('board').innerHTML=r.top.length?r.top.map(e=>`<li class="${user&&e.nick===user.nick?'me':''}"><span class="n">${esc(e.nick)}</span><span class="t">${esc(fmt(e.time))}</span></li>`).join(''):'<li class="msg">Пока пусто — будь первым!</li>';
     if(user&&r.me)$('mine').textContent='Твоё место: '+r.me.rank+' ('+fmt(r.me.time)+' с)';
   }catch(e){$('board').innerHTML='<li class="msg">'+esc(e.message)+'</li>'}
+=======
+>>>>>>> 3f8ac81d78f1dd0347c2bb6d271f27415dd9819e
 }
 let lastHud='';
 function updHud(force){const s=lvn+'|'+time.toFixed(2)+'|'+deaths;if(!force&&s===lastHud)return;lastHud=s;
@@ -197,6 +206,7 @@ function frame(now){
 }
 
 // UI
+<<<<<<< HEAD
 const ovs=['menu','pause','done','auth','nickov'];
 function show(id){for(const o of ovs)$(o).hidden=o!==id;$('hud').hidden=['menu','auth','nickov'].includes(id);if(id&&$(id).querySelector('button.main:not(:disabled)'))setTimeout(()=>{const b=$(id).querySelector('button.main:not(:disabled)');b&&b.focus()},30)}
 function menu(){state='menu';demo=0;load(1);buildMenu();show('menu')}
@@ -238,6 +248,13 @@ $('nickF').addEventListener('submit',async e=>{
   catch(x){$('nErr').textContent=x.message}finally{$('nGo').disabled=false}
 });
 $('nCancel').onclick=()=>show('menu');
+=======
+const ovs=['menu','pause','done'];
+function show(id){for(const o of ovs)$(o).hidden=o!==id;$('hud').hidden=id==='menu';if(id&&$(id).querySelector('button.main:not(:disabled)'))setTimeout(()=>{const b=$(id).querySelector('button.main:not(:disabled)');b&&b.focus()},30)}
+function menu(){state='menu';demo=0;load(1);buildMenu();show('menu')}
+function buildMenu(){$('lvls').innerHTML=Array.from({length:NLV},(_,i)=>{const n=i+1,lock=n>save.open;return`<button ${lock?'disabled':''} data-n="${n}" class="${n===save.open?'main':''}">Трасса ${n}<small>${lock?'закрыта':'рекорд '+fmt(save.best[n])}</small></button>`}).join('');
+  setTimeout(()=>{const b=$('lvls').querySelector('.main');b&&b.focus()},30)}
+>>>>>>> 3f8ac81d78f1dd0347c2bb6d271f27415dd9819e
 function play(n){for(const k in keys)keys[k]=0;load(n);state='play';show(null);cv.focus&&cv.focus()}
 $('lvls').addEventListener('click',e=>{const b=e.target.closest('button');if(b&&!b.disabled)play(+b.dataset.n)});
 $('resume').onclick=()=>{state='play';show(null)};
@@ -260,9 +277,13 @@ addEventListener('blur',()=>{for(const k in keys)keys[k]=0});
 for(const b of document.querySelectorAll('.touch button')){const k=b.dataset.k;
   b.addEventListener('pointerdown',e=>{e.preventDefault();if(state==='play')press(k,1)});
   for(const ev of['pointerup','pointercancel','pointerleave'])b.addEventListener(ev,()=>press(k,0))}
+<<<<<<< HEAD
 resize();load(1);buildMenu(false);requestAnimationFrame(frame);
 (async()=>{
   try{const r=await api('/api/me');online=true;if(r.user){setUser(r.user);menu()}else showAuth()}
   catch(e){online=false;setUser(null);menu()}
 })();
+=======
+resize();menu();requestAnimationFrame(frame);
+>>>>>>> 3f8ac81d78f1dd0347c2bb6d271f27415dd9819e
 }
